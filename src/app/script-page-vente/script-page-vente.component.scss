@@ -1,0 +1,47 @@
+.conteneur {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.fenetre {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+  .mat-form-field, .mat-radio-group {
+    margin-top: 5%;
+  }
+}
+.etape {
+  width: 65%;
+}
+
+.resultat {
+  width: 50%;
+  height: 40rem;
+  overflow: scroll;
+}
+
+
+.choix-radio {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  .choix-radio-button {
+    margin: 5px;
+  }
+}
+
+.valider-model {
+  margin-top: 5%;
+}
+
+
