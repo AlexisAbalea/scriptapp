@@ -1,0 +1,14 @@
+<div class="container">
+  <form [formGroup]="modelForm">
+    <div formArrayName="datas" class="formulaire">
+      <mat-form-field [formGroupName]="i" *ngFor="let data of getDatas().controls; let i = index">
+        <mat-label for="{{data.get('key').value}}">{{data.get('question').value}}</mat-label>
+        <input matInput type="text" class="form-control" id="{{data.get('key').value}}" formControlName="reponse">
+        <mat-hint><strong>{{data.get('indication').value}}</strong> </mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="valider-model">
+      <button mat-raised-button color="primary" matStepperNext (click)="setFormulaire()" [disabled]="!modelForm.valid">Etape suivante</button>
+    </div>
+  </form>
+</div>

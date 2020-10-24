@@ -12,3 +12,13 @@
   display: flex;
   justify-content: center;
 }
+
+h1 {
+  padding: 2%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.719);
+  span {
+    color: rgba(29, 29, 253, 0.527);
+    font-weight: bold;
+  }
+}

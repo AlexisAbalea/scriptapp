@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ScriptAppService } from 'src/app/script-app.service';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-edition',
@@ -8,24 +8,14 @@ import { ScriptAppService } from 'src/app/script-app.service';
 })
 export class EditionComponent implements OnInit {
 
-  formulaire = {
-    prenom: '',
-    activite: '',
-    desir: '',
-    erreur: '',
-    support: ''
-  };
+  @Input() modelForm;
 
-  resultat = `Si vous faites ${this.scriptService.formulaire.activite}, prêtez attention à ce que je vais vous dire parce que c’est probablement LA vidéo la plus importante que vous allez regarder en 2018.
-Si vous ${this.scriptService.formulaire.desir} vous ne pouvez plus ${this.scriptService.formulaire.erreur}. Ça ne marche pas. Ça ne marche plus.
-Bonjour je m’appelle ${this.scriptService.formulaire.prenom} et ceci est un(e) ${this.scriptService.formulaire.support} très spécial(e) … dans un instant je vais vous expliquer pourquoi.`;
-
-  constructor(private scriptService: ScriptAppService) {
+  constructor() {
 
    }
 
   ngOnInit(): void {
-    console.log(this.formulaire)
+
   }
 
 }

@@ -1,6 +1,8 @@
-<h2>Editer le model</h2>
-<textarea class="zone-edition" matInput [innerHTML]="resultat"></textarea>
-<br>
-<button mat-raised-button matStepperPrevious color="accent">Etape precedente</button>
-&nbsp;
-<button mat-raised-button color="primary" matStepperNext>Etape suivante</button>
+<div [formGroup]="modelForm">
+  <h2>Editer le model</h2>
+  <textarea class="zone-edition" matInput formControlName="texte"></textarea>
+  <br>
+  <button mat-raised-button matStepperPrevious color="accent">Etape precedente</button>
+  &nbsp;
+  <button mat-raised-button color="primary" matStepperNext>Etape suivante</button>
+</div>

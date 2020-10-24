@@ -1,44 +1,21 @@
-<div class="conteneur">
-  <div class="fenetre">
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened>
     <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content class="contenu-stepper">
     <mat-horizontal-stepper linear #stepper class="etape">
-      <mat-step >
+      <mat-step [stepControl]="modelForm">
         <ng-template matStepLabel>Formulaire</ng-template>
-        <div class="formulaire">
-          <mat-form-field>
-              <mat-label for="prenom">Votre prénom :</mat-label>
-              <input matInput type="text" class="form-control" id="prenom" [(ngModel)]="objet.prenom">
-          </mat-form-field>
-          <mat-form-field>
-              <mat-label for="activite">Votre activité :</mat-label>
-              <input matInput type="text" class="form-control" id="activite" [(ngModel)]="objet.activite">
-          </mat-form-field>
-          <mat-form-field>
-              <mat-label for="desir">Que voulez-vous ?</mat-label>
-              <input matInput type="text" class="form-control" id="desir" [(ngModel)]="objet.desir">
-          </mat-form-field>
-          <mat-form-field>
-              <mat-label for="erreur">Quelles sont les erreurs de celle-ci ?</mat-label>
-              <input matInput type="text" class="form-control" id="erreur" [(ngModel)]="objet.erreur">
-          </mat-form-field>
-          <mat-radio-group class="choix-radio">
-              <label>Quel est le support :</label>
-              <mat-radio-button class="choix-radio-button" type="radio" name="support" id="video" value="video" checked>Vidéo</mat-radio-button>
-              <mat-radio-button class="choix-radio-button" type="radio" name="support" id="message" value="message">Message</mat-radio-button>
-          </mat-radio-group>
-          <div class="valider-model">
-            <button mat-raised-button color="primary" matStepperNext (click)="setFormulaire()">Etape suivante</button>
-          </div>
-        </div>
-        </mat-step>
-        <mat-step >
-          <ng-template matStepLabel>Edition</ng-template>
-          <app-edition></app-edition>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Export</ng-template>
-          <app-export></app-export>
-        </mat-step>
-      </mat-horizontal-stepper>
-    </div>
-</div>
+        <app-formulaire [modelForm]="modelForm"></app-formulaire>
+      </mat-step>
+      <mat-step [editable]="modelForm.valid">
+        <ng-template matStepLabel>Edition</ng-template>
+        <app-edition [modelForm]="modelForm"></app-edition>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Export</ng-template>
+        <app-export></app-export>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +21,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { SidebarComponent } from './script-page-vente/sidebar/sidebar.component';
 import { EditionComponent } from './script-page-vente/edition/edition.component';
 import { ExportComponent } from './script-page-vente/export/export.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormulaireComponent } from './script-page-vente/formulaire/formulaire.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     RandomAccrocheComponent,
     SidebarComponent,
     EditionComponent,
-    ExportComponent
+    ExportComponent,
+    FormulaireComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +52,15 @@ import { FormsModule } from '@angular/forms';
     MatRadioModule,
     MatStepperModule,
     MatExpansionModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class AppModule { }

@@ -1,0 +1,14 @@
+
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+  .mat-form-field, .mat-radio-group {
+    margin-top: 5%;
+  }
+}
+
+.valider-model {
+  margin-top: 5%;
+}
