@@ -1,14 +1,21 @@
-<div class="container">
-  <form [formGroup]="modelForm">
-    <div formArrayName="datas" class="formulaire">
-      <mat-form-field [formGroupName]="i" *ngFor="let data of getDatas().controls; let i = index">
-        <mat-label for="{{data.get('key').value}}">{{data.get('question').value}}</mat-label>
-        <input matInput type="text" class="form-control" id="{{data.get('key').value}}" formControlName="reponse">
-        <mat-hint><strong>{{data.get('indication').value}}</strong> </mat-hint>
-      </mat-form-field>
-    </div>
-    <div class="valider-model">
-      <button mat-raised-button color="primary" matStepperNext (click)="setFormulaire()" [disabled]="!modelForm.valid">Etape suivante</button>
-    </div>
-  </form>
-</div>
+<form [formGroup]="modelForm">
+  <mat-accordion formArrayName="datas" multi>
+    <mat-expansion-panel [formGroupName]="i" *ngFor="let dataGroupe of getGroupeDatas().controls; let i = index;" [expanded]="i === 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="titre-panel">
+          <span [ngClass]="{'valide-titre': dataGroupe.valid}">{{ dataGroupe.get('key').value }}</span>
+          <mat-icon class="valide" *ngIf="dataGroupe.valid">check</mat-icon>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div formArrayName="data">
+        <mat-form-field [formGroupName]="j" *ngFor="let data of getDatas(dataGroupe).controls; let j = index;" class="contenu-accordeon">
+          <mat-label>{{ data.get('question').value }}</mat-label>
+          <input matInput formControlName="reponse">
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <br>
+  <button mat-raised-button color="primary" (click)="setFormulaire()" matStepperNext [disabled]="!this.modelForm.valid">Etape suivante</button>
+</form>
+

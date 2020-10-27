@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-formulaire',
@@ -15,8 +16,12 @@ export class FormulaireComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getDatas(): FormArray {
+  getGroupeDatas(): FormArray {
     return this.modelForm.get('datas') as FormArray;
+  }
+
+  getDatas(dataGroupe): FormArray {
+    return dataGroupe.get('data') as FormArray;
   }
 
 
@@ -30,12 +35,14 @@ export class FormulaireComponent implements OnInit {
   sliceTexteModel() {
     const texte = this.modelForm.get('texte').value;
     let res = texte;
-    for(let data of this.getDatas().controls) {
-      const regex = new RegExp('%%'+data.get('key').value+'%%', 'g');
-      if (data.get('reponse').value) {
-        res = res.replace(regex, () => {
-          return data.get('reponse').value;
-        });
+    for(let groupeData of this.getGroupeDatas().controls) {
+      for(let data of this.getDatas(groupeData).controls) {
+        const regex = new RegExp('%%'+data.get('key').value+'%%', 'g');
+        if (data.get('reponse').value) {
+          res = res.replace(regex, () => {
+            return data.get('reponse').value;
+          });
+        }
       }
     }
     this.modelForm.get('texte').setValue(res);

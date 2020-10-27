@@ -12,3 +12,23 @@
 .valider-model {
   margin-top: 5%;
 }
+
+.contenu-accordeon {
+  display: flex;
+}
+
+.titre-panel {
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+}
+
+.valide {
+    color: green;
+    font-weight: bold;
+}
+
+.valide-titre {
+  color: rgb(2, 109, 2);
+}

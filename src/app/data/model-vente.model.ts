@@ -2,7 +2,7 @@ export class ModelVente {
   public id;
   public categorie;
   public texte;
-  public datas: Map<String, QuestionReponse>;
+  public datas: Map<String, Map<String, QuestionReponse>>;
 
 }
 
