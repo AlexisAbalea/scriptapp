@@ -1,1 +1,12 @@
-<p>random-accroche works!</p>
+<div class="conteneur">
+  <mat-card class="card">
+    <mat-card-title>GENERATEUR D'ACCROCHES</mat-card-title>
+    <mat-card-subtitle>Utiliser ce générateur pour trouver rapidemment, l'accroche répondant à votre besoin.</mat-card-subtitle>
+    <mat-card-content class="card-content">
+      <div class="resultat">
+        <span>"{{ accroche }} ..."</span>
+      </div>
+      <button mat-raised-button color="primary" (click)="getAccroche()">Generer accroche</button>
+    </mat-card-content>
+  </mat-card>
+</div>

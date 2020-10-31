@@ -1,0 +1,30 @@
+.conteneur {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: auto;
+}
+
+.card {
+  height: 250px;
+  width: 50%;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resultat {
+  padding: 5%;
+  font-weight: bold;
+  font-size: 2rem;
+  color: rgba(77, 24, 223, 0.918);
+}
+
+button {
+  width: 200px;
+}
