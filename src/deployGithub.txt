@@ -1,0 +1,12 @@
+Commande angular deployer sur github
+
+/**** push git ****/
+git add .
+git commit -m "..."
+git push origin master
+/*********************/
+
+ng build --prod --base-href "https://AlexisAbalea.github.io/scriptapp/"
+
+npx angular-cli-ghpages --dir=dist/script-app
+

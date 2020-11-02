@@ -1,7 +1,8 @@
+<mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
 <div class="conteneur">
-  <mat-card class="card">
+  <mat-card class="card" *ngIf="!spinner">
     <mat-card-title>GENERATEUR D'ACCROCHES</mat-card-title>
-    <mat-card-subtitle>Utiliser ce générateur pour trouver rapidemment, l'accroche répondant à votre besoin.</mat-card-subtitle>
+    <mat-card-subtitle>Utiliser ce générateur pour trouver rapidement, l'accroche répondant à votre besoin.</mat-card-subtitle>
     <mat-card-content class="card-content">
       <div class="resultat">
         <span>"{{ accroche }} ..."</span>
@@ -10,3 +11,4 @@
     </mat-card-content>
   </mat-card>
 </div>
+

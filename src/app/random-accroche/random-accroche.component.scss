@@ -28,3 +28,10 @@
 button {
   width: 200px;
 }
+
+.spinner {
+  position: absolute;
+  top: 35%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}

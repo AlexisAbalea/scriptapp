@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScriptAppService } from '../script-app.service';
 
 @Component({
   selector: 'app-random-accroche',
@@ -9,11 +10,29 @@ export class RandomAccrocheComponent implements OnInit {
 
   accroche;
 
-  listeAccroches = ['Wesh', 'bien ou quoi ?', 'Salut', 'Tu veux devenir riche ?', 'Salut, tu aimes les patates ?', 'Donnez moi de la moula', 'Salut jeune entrepreneur', 'Tu veux la vie de rêve ?', 'Revenu passif rapidemment'];
-  constructor() { }
+  spinner = false;
+
+  listeAccroches = [];
+  constructor(private service: ScriptAppService) { }
 
   ngOnInit(): void {
-    this.getAccroche();
+    this.recupererAccroche();
+  }
+
+  recupererAccroche() {
+    this.spinner = true;
+    this.service.getAccroches().subscribe(val => {
+      if (val) {
+        val.forEach(element => {
+          this.listeAccroches.push(element);
+        });
+        this.getAccroche();
+      }
+    }, error => {
+      console.error(error);
+    }, () => {
+      this.spinner = false;
+    });
   }
 
   getAccroche() {
