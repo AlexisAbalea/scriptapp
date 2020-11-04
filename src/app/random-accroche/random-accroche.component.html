@@ -1,14 +1,112 @@
-<mat-spinner *ngIf="spinner" class="spinner"></mat-spinner>
-<div class="conteneur">
-  <mat-card class="card" *ngIf="!spinner">
-    <mat-card-title>GENERATEUR D'ACCROCHES</mat-card-title>
-    <mat-card-subtitle>Utiliser ce générateur pour trouver rapidement, l'accroche répondant à votre besoin.</mat-card-subtitle>
-    <mat-card-content class="card-content">
-      <div class="resultat">
-        <span>"{{ accroche }} ..."</span>
-      </div>
-      <button mat-raised-button color="primary" (click)="getAccroche()">Generer accroche</button>
-    </mat-card-content>
-  </mat-card>
+<div class="entete">
+  <h1>Générateur d'accroches</h1>
+  <legend>Remplissez le formulaire puis générez des phrases d'accroches.</legend>
 </div>
+<form class="formulaire">
+  <div class="element">
+    <h4>1. Quel type de produit vendez-vous ?</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Type de produit</mat-label>
+      <mat-select [(ngModel)]="reponse.reponse1" name="reponse1">
+        <mat-option *ngFor="let produit of produits;" [value]="produit">
+          {{produit.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <table *ngIf="reponse.reponse1.viewValue === 'Autre'">
+      <tr>
+        <td>
+          <mat-form-field>
+            <mat-label>type de produit :</mat-label>
+            <input matInput autocomplete="off" name="reponse1Value" [(ngModel)]="reponse.reponse1.value">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" class="table-reponse">
+            <mat-label>Genre :</mat-label>
+            <mat-select [(ngModel)]="reponse.reponse1.genre" name="reponse1Genre" class="table-reponse">
+              <mat-option [value]="false">Feminin</mat-option>
+              <mat-option [value]="true">Masculin</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="element">
+    <h4>2. A quoi sert votre produit ?</h4>
+    <mat-form-field class="form-field-input">
+      <mat-label>Ce produit va permettre de :</mat-label>
+      <input matInput autocomplete="off" name="reponse2" [(ngModel)]="reponse.reponse2">
+      <mat-hint class="hint-size"><strong>Exemple : Perdre 3 kilos par semaine, gagner des visiteurs sur son blog</strong></mat-hint>
+    </mat-form-field>
+  </div>
 
+  <div class="element">
+    <h4>3. Citez un avantage de type « Action » que va apporter votre produit</h4>
+    <mat-form-field>
+      <mat-label>Avec ce produit, vous pouvez :</mat-label>
+      <input matInput
+        matTooltip="Doit commencer par un verbe et s’adresser à « VOUS »"
+        matTooltipClass="tooltip-style"
+        matTooltipPosition="above"
+        autocomplete="off"
+        name="reponse3"
+        [(ngModel)]="reponse.reponse3">
+      <mat-hint class="hint-size"><strong>Exemple : Retrouver votre poids idéal, multiplier les visiteurs de votre blog par 3</strong></mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div class="element">
+    <h4>3-Bis. Citez un (autre) avantage de type « Action »</h4>
+    <mat-form-field>
+      <mat-label>Avec ce produit, vous pouvez :</mat-label>
+      <input matInput
+        matTooltip="Doit commencer par un verbe et s’adresser à « EUX »"
+        matTooltipClass="tooltip-style"
+        matTooltipPosition="above"
+        autocomplete="off"
+        name="reponse3bis" [(ngModel)]="reponse.reponse3bis">
+      <mat-hint class="hint-size"><strong>Exemple : Retrouver leur poids idéal, multiplier les visiteurs de leur blog par 3</strong></mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div class="element">
+    <h4>4. Qui utilise votre produit ?</h4>
+    <mat-form-field>
+      <mat-label>Une seule réponse au pluriel :</mat-label>
+      <input matInput autocomplete="off" name="reponse4" [(ngModel)]="reponse.reponse4">
+      <mat-hint class="hint-size"><strong>Exemples : femmes, hommes, blogueurs, internautes, médecins</strong></mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div class="element">
+    <h4>5. Citez un avantage de type « résultat » que va apporter votre produit :</h4>
+    <mat-form-field>
+      <mat-label>Si vous avez toujours voulu avoir :</mat-label>
+      <input matInput autocomplete="off"  name="reponse5" [(ngModel)]="reponse.reponse5">
+      <mat-hint class="hint-size"><strong>Exemples : un blog qui rapporte, un corps de rêve</strong></mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div class="element">
+    <h4>6. Citez un problème que votre produit va résoudre :</h4>
+    <mat-form-field>
+      <mat-label>Si vous en avez marre de :</mat-label>
+      <input matInput autocomplete="off" name="reponse6" [(ngModel)]="reponse.reponse6">
+      <mat-hint class="hint-size"><strong>Exemples : perdre ses kilos en trop, manquer de visiteurs</strong></mat-hint>
+    </mat-form-field>
+  </div>
+</form>
+<div class="resultat">
+  <h2>Résultat : </h2>
+  <textarea class="textarea" [(ngModel)]="resultat"></textarea>
+</div>
+<div class="button-fin">
+  <button mat-fab color="primary" (click)="majTexte()">
+    <mat-icon>autorenew</mat-icon>
+  </button>
+  <button mat-fab class="clear-button" color="light" (click)="deleteForm()">
+    <mat-icon color="accent">clear</mat-icon>
+  </button>
+</div>

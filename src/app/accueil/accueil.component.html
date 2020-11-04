@@ -1,23 +1,29 @@
-<h1 class="animate__animated animate__fadeInDown"><span>></span> Bienvenue sur Script App</h1>
-<div class="card-display">
-  <mat-card class="card-accueil mat-elevation-z5">
-    <mat-card-header>
-      <mat-card-title>Page de vente</mat-card-title>
-      <mat-card-subtitle>Génerer une page de vente parmis une <b>large</b> selection de model.</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="button-card" >
-      <button mat-raised-button color="accent" [routerLink]="['/script']">Génerer une page de vente 1499$</button>
-    </mat-card-content>
-  </mat-card>
+<div class="conteneur">
+  <div class="entete">
+    <h1>Bienvenue sur</h1>
+    <img class="animate__animated animate__headShake" src="../../assets/logo_white.png">
+    <img class="image-decoration" src="../../assets/texte_exemple.PNG">
+  </div>
+  <div class="card-display">
+    <mat-card class="card-accueil mat-elevation-z5">
+      <mat-card-header>
+        <mat-card-title>Page de vente</mat-card-title>
+        <mat-card-subtitle>Génerer une page de vente parmis une <b>large</b> selection de model.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="button-card" >
+        <button mat-raised-button color="accent" [routerLink]="['/script']">Génerer une page de vente</button>
+      </mat-card-content>
+    </mat-card>
 
-  <mat-card class="card-accueil mat-elevation-z5">
-    <mat-card-header>
-      <mat-card-title>Accroche</mat-card-title>
-      <mat-card-subtitle>Génerer une phrase d'accroche aléatoirement.</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="button-card">
-      <button mat-raised-button color="accent" [routerLink]="['/accroche']">Génerer une phrase d'accroche 499$</button>
-    </mat-card-content>
-  </mat-card>
+    <mat-card class="card-accueil mat-elevation-z5">
+      <mat-card-header>
+        <mat-card-title>Accroche</mat-card-title>
+        <mat-card-subtitle>Génerer des phrases d'accroches aléatoirement.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="button-card">
+        <button mat-raised-button color="accent" [routerLink]="['/accroche']">Génerer des phrases d'accroches</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
 

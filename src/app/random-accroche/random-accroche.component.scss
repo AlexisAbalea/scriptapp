@@ -1,37 +1,65 @@
-.conteneur {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80%;
-  width: auto;
+.entete {
+  padding: 2%;
 }
 
-.card {
-  height: 250px;
-  width: 50%;
+.tooltip-style {
+  background: #b71c1c;
 }
 
-.card-content {
+.formulaire {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  margin: 2%;
+  width: 40%;
+}
+
+.button-fin {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.clear-button {
+  margin-top: 150px;
 }
 
 .resultat {
-  padding: 5%;
-  font-weight: bold;
-  font-size: 2rem;
-  color: rgba(77, 24, 223, 0.918);
-}
-
-button {
-  width: 200px;
-}
-
-.spinner {
   position: absolute;
-  top: 35%;
-  left: 45%;
-  transform: translate(-50%, -50%);
+  top: 15%;
+  left: 53%;
+}
+
+.textarea {
+  height: 30vw;
+  width: 40vw;
+  padding: 3%;
+  font-size: 12pt;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(4, 73, 138);
+}
+
+.element {
+  margin-bottom: 55px;
+  width: 100%;
+  font-size: 11pt;
+  h4 {
+    font-size: 13pt;
+  }
+}
+
+.table-reponse, td {
+  width: 80% !important;
+}
+
+.hint-size {
+  width: 100%;
+}
+.mat-form-field {
+  width: 40%;
+}
+
+h4 {
+  color: rgb(4, 73, 138);
 }
