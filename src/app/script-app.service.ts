@@ -26,4 +26,5 @@ export class ScriptAppService {
   getAccroches(): Observable<any> {
     return this.http.get(this.SERVER + '/api/accroches');
   }
+
 }

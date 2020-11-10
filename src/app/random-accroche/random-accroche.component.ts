@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-random-accroche',
@@ -26,6 +27,9 @@ export class RandomAccrocheComponent implements OnInit {
     {value: 'seminaire', viewValue: 'Séminaire', genre: true}
   ];
 
+  accrochesSauvegarde: Accroche[] = [];
+  displayedColumns: string[] = ['position', 'accroche'];
+  dataSource = new MatTableDataSource(this.accrochesSauvegarde);
 
   reponse;
 
@@ -47,7 +51,33 @@ export class RandomAccrocheComponent implements OnInit {
   }
 
   initReponse() {
-    this.reponse = {reponse1: {value: '', viewValue: '', genre: false}, reponse2: '', reponse3: '', reponse3bis: '', reponse4: '', reponse5: '', reponse6: ''};
+    this.reponse = {reponse1: '', reponse2: '', reponse3: '', reponse4: '', reponse5: '', reponse6: '', reponse7: ''};
+  }
+
+  getAccroche() {
+    let accroche = 'Qui d\'autre veut %%2%%';
+    accroche = this.searchAndReplaceData(accroche);
+    this.resultat = accroche;
+  }
+
+  searchAndReplaceData(value) {
+    const index = value.indexOf("%%");
+    if (index === -1) {
+      return value;
+    }
+    const keyReponse = value[index+2];
+    value = value.replace('%%'+keyReponse+'%%', this.reponse['reponse'+keyReponse]);
+    return value;
+  }
+
+  addFavoriteAccroche(accroche) {
+    if (accroche) {
+      this.accrochesSauvegarde.push({
+        position: this.accrochesSauvegarde.length + 1,
+        accroche: accroche
+      });
+      this.dataSource = new MatTableDataSource(this.accrochesSauvegarde);
+    }
   }
 
   getTexte(reponse) {
@@ -156,3 +186,7 @@ interface Produits {
   genre: boolean;
 }
 
+interface Accroche {
+  position: number;
+  accroche: string;
+}

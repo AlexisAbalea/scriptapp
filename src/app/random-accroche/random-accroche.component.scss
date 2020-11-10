@@ -1,43 +1,79 @@
+.conteneur-global {
+  display: flex;
+  align-items: center;
+  .resultat {
+    width: 100%;
+  }
+}
+
 .entete {
-  padding: 2%;
+  padding-top: 2%;
+  padding-left: 5%;
 }
 
 .tooltip-style {
-  background: #b71c1c;
+  background: #000000bb;
+  font-size: 11pt;
+}
+
+.mat-radio-button {
+  margin-left: 16px;
 }
 
 .formulaire {
   display: flex;
   flex-direction: column;
-  margin: 2%;
-  width: 40%;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 750px;
+  width: 80%;
+  overflow: scroll;
 }
 
-.button-fin {
-  position: absolute;
-  top: 40%;
-  left: 45%;
-  display: flex;
-  flex-direction: column;
+.mat-card {
+  height: 350px;
+  width: 700px;
+  .mat-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    p {
+      font-size: 18pt;
+      color: rgb(106, 9, 218);
+      font-weight: 500;
+      letter-spacing: 0.5pt;
+      text-align: center;
+    }
+  }
+  .mat-card-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    button {
+      width: 50%;
+      height: 50px;
+      font-size: 16pt;
+    }
+  }
 }
 
-.clear-button {
-  margin-top: 150px;
+.table-container {
+  position: relative;
+  height: 300px;
+  overflow: auto;
+  width: 740px;
+  margin-top: 15px;
 }
 
-.resultat {
-  position: absolute;
-  top: 15%;
-  left: 53%;
+legend {
+  color: rgba(0, 0, 0, 0.616);
 }
 
-.textarea {
-  height: 30vw;
-  width: 40vw;
-  padding: 3%;
-  font-size: 12pt;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: rgb(4, 73, 138);
+table {
+  width: 730px;
 }
 
 .element {
@@ -49,10 +85,6 @@
   }
 }
 
-.table-reponse, td {
-  width: 80% !important;
-}
-
 .hint-size {
   width: 100%;
 }
@@ -62,4 +94,8 @@
 
 h4 {
   color: rgb(4, 73, 138);
+}
+
+hr {
+  border-color: rgba(165, 157, 157, 0.212);
 }
