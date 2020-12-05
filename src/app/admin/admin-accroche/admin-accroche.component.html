@@ -1,0 +1,19 @@
+
+<div class="conteneur">
+  <div class="addaccroche">
+    <h1>Ajouter une accroche :</h1>
+    <form>
+      <mat-form-field>
+        <mat-label>Accroche</mat-label>
+        <textarea  matInput #message maxlength="256" placeholder="Si toi aussi tu veux %%2%%" [(ngModel)]="accroche" name="inputAccroche"></textarea>
+        <mat-hint align="start"><strong>Ajoute entre %% + le numero de la réponse voulue pour ajouter une accroche valide (ex: %%3%%)</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+      <button mat-flat-button color="primary" (click)="createAccroche(accroche)" [disabled]="checkAccroche(accroche)">Créer l'accroche</button>
+    </form>
+  </div>
+  <div class="listeaccroche">
+      <h1>Tous les accroches : </h1>
+      <app-tableau-resultat [liste]="listeAccroche" [displayedColumns]="displayedColumns" (toDelete)="deleteAccroche($event)"></app-tableau-resultat>
+  </div>
+</div>

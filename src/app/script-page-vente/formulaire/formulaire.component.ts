@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray } from '@angular/forms';
-import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-formulaire',

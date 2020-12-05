@@ -25,11 +25,37 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormulaireComponent } from './script-page-vente/formulaire/formulaire.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTableModule} from '@angular/material/table';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SnackbarComponent } from './snackbar/snackbar.component';
+import { JwtHelperService, JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+import { AuthService } from './services/auth.service';
+import { ScriptAppService } from './services/script-app.service';
+import {MatMenuModule} from '@angular/material/menu';
+import { AdminComponent } from './admin/admin.component';
+import { SidebarAdminComponent } from './admin/sidebar-admin/sidebar-admin.component';
+import { AdminUtilisateurComponent } from './admin/admin-utilisateur/admin-utilisateur.component';
+import { AdminPageVenteComponent } from './admin/admin-page-vente/admin-page-vente.component';
+import { AdminAccrocheComponent } from './admin/admin-accroche/admin-accroche.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NgoloKanteInterceptor } from './services/ngolokante.interceptor';
+import { TableauResultatComponent } from './components/tableau-resultat/tableau-resultat.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogConfirmComponent } from './components/dialog-confirm/dialog-confirm.component';
+
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
+
+const JWT_Module_Options: JwtModuleOptions = {
+  config: {
+    tokenGetter: tokenGetter
+  }
+};
 
 @NgModule({
   declarations: [
@@ -43,7 +69,15 @@ import {MatTableModule} from '@angular/material/table';
     SidebarComponent,
     EditionComponent,
     ExportComponent,
-    FormulaireComponent
+    FormulaireComponent,
+    SnackbarComponent,
+    AdminComponent,
+    SidebarAdminComponent,
+    AdminUtilisateurComponent,
+    AdminPageVenteComponent,
+    AdminAccrocheComponent,
+    TableauResultatComponent,
+    DialogConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -66,13 +100,31 @@ import {MatTableModule} from '@angular/material/table';
     MatSelectModule,
     MatTooltipModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule,
+    JwtModule.forRoot(JWT_Module_Options),
+    MatMenuModule,
+    MatCheckboxModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    JwtHelperService,
+    AuthService,
+    ScriptAppService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NgoloKanteInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [
     NO_ERRORS_SCHEMA,
     CUSTOM_ELEMENTS_SCHEMA
+  ],
+  entryComponents: [
+    SnackbarComponent,
+    DialogConfirmComponent
   ]
 })
 export class AppModule { }

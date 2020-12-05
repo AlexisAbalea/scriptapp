@@ -1,0 +1,12 @@
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened>
+    <app-sidebar-admin (sidebarMenu)="changeMenu($event)"></app-sidebar-admin>
+  </mat-drawer>
+  <mat-drawer-content>
+    <h1>Accès Administrateur</h1>
+    <legend>Fait pas le fou stp</legend>
+    <app-admin-accroche *ngIf="accesAccroche"></app-admin-accroche>
+    <app-admin-page-vente *ngIf="accesPageVente"></app-admin-page-vente>
+    <app-admin-utilisateur *ngIf="accesUtilisateur"></app-admin-utilisateur>
+  </mat-drawer-content>
+</mat-drawer-container>

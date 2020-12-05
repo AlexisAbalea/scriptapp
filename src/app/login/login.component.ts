@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,44 +12,39 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   public loginInvalid: boolean;
-  private formSubmitAttempt: boolean;
-  private returnUrl: string;
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService
   ) {
   }
 
   async ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/game';
+    if(this.authService.isAuthenticated() ) {
+      this.router.navigate(['accueil']);
+    }
 
     this.form = this.fb.group({
-      username: ['', Validators.email],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     });
-
-   // if (await this.authService.checkAuthenticated()) {
-    //  await this.router.navigate([this.returnUrl]);
-    //}
   }
 
   async onSubmit() {
     this.loginInvalid = false;
-    this.formSubmitAttempt = false;
     if (this.form.valid) {
       try {
         const username = this.form.get('username').value;
         const password = this.form.get('password').value;
-        console.log(username, password);
-        // await this.authService.login(username, password);
+        this.authService.login(username, password).then(log => {
+          if (this.authService.isAuthenticated()) {
+            this.router.navigate(['accueil']);
+          }
+        });
       } catch (err) {
         this.loginInvalid = true;
       }
-    } else {
-      this.formSubmitAttempt = true;
     }
   }
 }

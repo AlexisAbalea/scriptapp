@@ -1,0 +1,25 @@
+.conteneur {
+  margin: 2%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+textarea {
+  height: 50px;
+}
+
+button {
+  margin-top: 30px;
+}
+
+.addaccroche {
+  padding: 2%;
+}
+
+.listeaccroche {
+  padding: 2%;
+}

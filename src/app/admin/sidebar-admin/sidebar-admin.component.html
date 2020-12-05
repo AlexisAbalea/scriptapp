@@ -1,0 +1,16 @@
+<div>
+  <mat-list>
+    <div mat-subheader>Menu admin</div>
+    <mat-selection-list [multiple]="false">
+      <mat-list-option (click)="onClickMenu('util')">
+        Gestion des utilisateurs
+      </mat-list-option>
+      <mat-list-option (click)="onClickMenu('pageVente')">
+        Gestion des pages de vente
+      </mat-list-option>
+      <mat-list-option (click)="onClickMenu('accroche')">
+        Gestion des accroches
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-list>
+</div>

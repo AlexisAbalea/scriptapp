@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScriptAppService } from '../script-app.service';
+import { ScriptAppService } from '../services/script-app.service';
 
 @Component({
   selector: 'app-accueil',

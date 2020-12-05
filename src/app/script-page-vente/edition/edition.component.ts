@@ -1,5 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormArray } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-edition',

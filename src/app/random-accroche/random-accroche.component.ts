@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { ScriptAppService } from '../services/script-app.service';
+import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 @Component({
   selector: 'app-random-accroche',
@@ -31,12 +35,27 @@ export class RandomAccrocheComponent implements OnInit {
   displayedColumns: string[] = ['position', 'accroche'];
   dataSource = new MatTableDataSource(this.accrochesSauvegarde);
 
+  loading: boolean;
   reponse;
 
   resultat = '';
 
+  constructor(private scriptappService: ScriptAppService, private _snackBar: MatSnackBar, private fb: FormBuilder) {}
+
   ngOnInit(): void {
     this.initReponse();
+  }
+
+  initReponse() {
+    this.reponse = this.fb.group({
+      reponse1: ['', Validators.required],
+      reponse2: ['', Validators.required],
+      reponse3: ['', Validators.required],
+      reponse4: ['', Validators.required],
+      reponse5: ['', Validators.required],
+      reponse6: ['', Validators.required],
+      reponse7: ['', Validators.required],
+    });
   }
 
   majTexte() {
@@ -50,14 +69,24 @@ export class RandomAccrocheComponent implements OnInit {
     this.initReponse();
   }
 
-  initReponse() {
-    this.reponse = {reponse1: '', reponse2: '', reponse3: '', reponse4: '', reponse5: '', reponse6: '', reponse7: ''};
-  }
 
   getAccroche() {
-    let accroche = 'Qui d\'autre veut %%2%%';
-    accroche = this.searchAndReplaceData(accroche);
-    this.resultat = accroche;
+    this.loading = true;
+    this.scriptappService.getAccroches().subscribe(document => {
+      if (document && document.accroche) {
+        const accroche = this.searchAndReplaceData(document.accroche);
+        this.resultat = accroche;
+      } else {
+        this.resultat = '';
+        this.openSnackBar('Oupsi, je ne trouve pas d\'accroche.');
+      }
+      this.loading = false;
+    }, error => {
+      this.resultat = '';
+      this.openSnackBar('Oups, une erreur est survenue.');
+      console.log(error);
+      this.loading = false;
+    });
   }
 
   searchAndReplaceData(value) {
@@ -66,7 +95,8 @@ export class RandomAccrocheComponent implements OnInit {
       return value;
     }
     const keyReponse = value[index+2];
-    value = value.replace('%%'+keyReponse+'%%', this.reponse['reponse'+keyReponse]);
+    console.log(keyReponse);
+    value = value.replace('%%'+keyReponse+'%%', this.reponse.get('reponse'+keyReponse).value);
     return value;
   }
 
@@ -78,6 +108,14 @@ export class RandomAccrocheComponent implements OnInit {
       });
       this.dataSource = new MatTableDataSource(this.accrochesSauvegarde);
     }
+  }
+
+  openSnackBar(message) {
+    this._snackBar.openFromComponent(SnackbarComponent, {
+      duration: 6000,
+      data: message,
+      panelClass: ['mat-toolbar', 'mat-warn']
+    })
   }
 
   getTexte(reponse) {

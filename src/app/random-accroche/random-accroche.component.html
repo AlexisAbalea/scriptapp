@@ -4,23 +4,23 @@
       <h1>Générateur d'accroches</h1>
       <legend>Remplissez le formulaire puis générez des phrases d'accroches.</legend>
     </div>
-    <form>
+    <form [formGroup]="reponse">
       <div class="element">
         <h4>1. Quel type de produit vendez-vous ?</h4>
         <mat-form-field appearance="fill">
           <mat-label>Type de produit</mat-label>
-          <mat-select [(ngModel)]="reponse.reponse1" name="reponse1">
+          <mat-select formControlName="reponse1" name="reponse1">
             <mat-option *ngFor="let produit of produits;" [value]="produit">
               {{produit.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div *ngIf="reponse.reponse1.viewValue === 'Autre'">
+        <div *ngIf="reponse.get('reponse1').value === 'Autre'">
           <mat-form-field>
             <mat-label>Type de produit :</mat-label>
-            <input matInput autocomplete="off" name="reponse1Value" [(ngModel)]="reponse.reponse1.value">
+            <input matInput autocomplete="off" name="reponse1Value" >
           </mat-form-field>
-          <mat-radio-group aria-label="Select an option"  [(ngModel)]="reponse.reponse1.genre" name="reponse1Genre">
+          <mat-radio-group aria-label="Select an option" name="reponse1Genre">
             <mat-radio-button [value]="false">Féminin</mat-radio-button>
             <mat-radio-button [value]="true">Masculin</mat-radio-button>
           </mat-radio-group>
@@ -30,7 +30,7 @@
         <h4>2. A quoi sert votre produit ?</h4>
         <mat-form-field class="form-field-input">
           <mat-label>Ce produit va permettre de :</mat-label>
-          <input matInput autocomplete="off" name="reponse2" [(ngModel)]="reponse.reponse2">
+          <input matInput autocomplete="off" name="reponse2" formControlName="reponse2">
           <mat-hint class="hint-size"><strong>Exemple : Perdre 3 kilos par semaine, gagner des visiteurs sur son blog</strong></mat-hint>
         </mat-form-field>
       </div>
@@ -46,7 +46,7 @@
             matTooltipHideDelay="1000"
             autocomplete="off"
             name="reponse3"
-            [(ngModel)]="reponse.reponse3">
+            formControlName="reponse3">
           <mat-hint class="hint-size"><strong>Exemple : Retrouver votre poids idéal, multiplier les visiteurs de votre blog par 3</strong></mat-hint>
         </mat-form-field>
       </div>
@@ -61,7 +61,7 @@
             matTooltipPosition="left"
             matTooltipHideDelay="1000"
             autocomplete="off"
-            name="reponse3bis" [(ngModel)]="reponse.reponse3bis">
+            name="reponse4" formControlName="reponse4">
           <mat-hint class="hint-size"><strong>Exemple : Retrouver leur poids idéal, multiplier les visiteurs de leur blog par 3</strong></mat-hint>
         </mat-form-field>
       </div>
@@ -70,7 +70,7 @@
         <h4>4. Qui utilise votre produit ?</h4>
         <mat-form-field>
           <mat-label>Une seule réponse au pluriel :</mat-label>
-          <input matInput autocomplete="off" name="reponse4" [(ngModel)]="reponse.reponse4">
+          <input matInput autocomplete="off" name="reponse5" formControlName="reponse5">
           <mat-hint class="hint-size"><strong>Exemples : femmes, hommes, blogueurs, internautes, médecins</strong></mat-hint>
         </mat-form-field>
       </div>
@@ -79,7 +79,7 @@
         <h4>5. Citez un avantage de type « résultat » que va apporter votre produit :</h4>
         <mat-form-field>
           <mat-label>Si vous avez toujours voulu avoir :</mat-label>
-          <input matInput autocomplete="off"  name="reponse5" [(ngModel)]="reponse.reponse5">
+          <input matInput autocomplete="off"  name="reponse6" formControlName="reponse6">
           <mat-hint class="hint-size"><strong>Exemples : un blog qui rapporte, un corps de rêve</strong></mat-hint>
         </mat-form-field>
       </div>
@@ -88,7 +88,7 @@
         <h4>6. Citez un problème que votre produit va résoudre :</h4>
         <mat-form-field>
           <mat-label>Si vous en avez marre de :</mat-label>
-          <input matInput autocomplete="off" name="reponse6" [(ngModel)]="reponse.reponse6">
+          <input matInput autocomplete="off" name="reponse7" formControlName="reponse7">
           <mat-hint class="hint-size"><strong>Exemples : perdre ses kilos en trop, manquer de visiteurs</strong></mat-hint>
         </mat-form-field>
       </div>
@@ -101,15 +101,18 @@
       </mat-card-header>
       <hr>
       <mat-card-content>
-        <p>
+        <p *ngIf="resultat">
           <span>"</span>{{ resultat }}<span>"</span>
+          <button mat-icon-button color="accent" class="hvr-icon-pop" (click)="addFavoriteAccroche(resultat)">
+            <mat-icon class="hvr-icon">favorite_border</mat-icon>
+          </button>
         </p>
-        <button mat-icon-button color="accent" class="hvr-icon-pop" (click)="addFavoriteAccroche(resultat)">
-          <mat-icon class="hvr-icon">favorite_border</mat-icon>
-        </button>
+        <p *ngIf="!resultat">
+          Remplissez le formulaire pour pouvoir générer une accroche.
+        </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" class="hvr-icon-spin" (click)="getAccroche()">Générer <mat-icon class="hvr-icon">settings</mat-icon></button>
+        <button mat-raised-button color="primary" class="hvr-icon-spin" (click)="getAccroche()" [disabled]="loading || reponse.invalid">Générer <mat-icon>settings</mat-icon></button>
       </mat-card-actions>
     </mat-card>
     <div class="table-container">
@@ -131,3 +134,4 @@
     </div>
   </div>
 </div>
+
