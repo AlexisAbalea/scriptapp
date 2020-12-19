@@ -1,13 +1,7 @@
 <h2>Exporter le model</h2>
 <div class="validation">
   <div>
-    <a href="./file.txt" download mat-fab color="accent">.TXT</a>
-  </div>
-  <div>
-    <a mat-fab color="warn">.PDF</a>
-  </div>
-  <div>
-    <a mat-fab color="primary">.DOC</a>
+    <button class="exportbutton" (click)="downloadTxt()" mat-raised-button color="primary">Exporter le model <mat-icon>get_app</mat-icon></button>
   </div>
 </div>
 <br>

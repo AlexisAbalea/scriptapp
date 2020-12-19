@@ -3,8 +3,7 @@
     <mat-expansion-panel [formGroupName]="i" *ngFor="let dataGroupe of getGroupeDatas().controls; let i = index;" [expanded]="i === 0">
       <mat-expansion-panel-header>
         <mat-panel-title class="titre-panel">
-          <span [ngClass]="{'valide-titre': dataGroupe.valid}">{{ dataGroupe.get('key').value }}</span>
-          <mat-icon class="valide" *ngIf="dataGroupe.valid">check</mat-icon>
+          <span>{{ dataGroupe.get('key').value }}</span>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div formArrayName="data">
@@ -16,6 +15,6 @@
     </mat-expansion-panel>
   </mat-accordion>
   <br>
-  <button mat-raised-button color="primary" (click)="setFormulaire()" matStepperNext [disabled]="!this.modelForm.valid">Etape suivante</button>
+  <button mat-raised-button color="primary" (click)="setFormulaire()" matStepperNext>Etape suivante</button>
 </form>
 

@@ -46,6 +46,7 @@ import { NgoloKanteInterceptor } from './services/ngolokante.interceptor';
 import { TableauResultatComponent } from './components/tableau-resultat/tableau-resultat.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogConfirmComponent } from './components/dialog-confirm/dialog-confirm.component';
+import { ProfilComponent } from './profil/profil.component';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -77,7 +78,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     AdminPageVenteComponent,
     AdminAccrocheComponent,
     TableauResultatComponent,
-    DialogConfirmComponent
+    DialogConfirmComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

@@ -32,10 +32,10 @@ export class FormulaireComponent implements OnInit {
    * Pour chaque key cherche index et remplace par le model
    */
   sliceTexteModel() {
-    const texte = this.modelForm.get('texte').value;
-    let res = texte;
+    let res = this.modelForm.get('texte').value;
     for(let groupeData of this.getGroupeDatas().controls) {
       for(let data of this.getDatas(groupeData).controls) {
+        console.log('reponse -> key :', data.get('reponse').value, data.get('key').value);
         const regex = new RegExp('%%'+data.get('key').value+'%%', 'g');
         if (data.get('reponse').value) {
           res = res.replace(regex, () => {

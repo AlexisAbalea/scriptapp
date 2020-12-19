@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   constructor(public auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-
+    this.auth.checkValidToken();
   }
 
   logout() {

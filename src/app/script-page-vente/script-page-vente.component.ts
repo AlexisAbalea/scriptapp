@@ -23,23 +23,10 @@ export class ScriptPageVenteComponent implements OnInit {
 
 
   getModel() {
-    this.model = new ModelVente;
+    this.model = new ModelVente();
     this.model.id = 1;
+    this.model.nom = 'model_vente';
     this.model.categorie = 'email';
-    /*
-    this.model.texte = 'Gagner pres de %%argent%% par seconde sans bouger de chez vous vous interesse ? Bonjour, mon nom est %%prenom%%. Cette technique est basé sur une méthode %%methode%%. C\'est tres simple, elle consiste %%principe%%, ça marche véritablement ! Bisous %%prenom%%';
-    const map = new Map<String, QuestionReponse>();
-    map.set('argent', {question: 'Combien ça rapporte ?', indication: 'Gagner pres de ... par seconde', reponse: ''});
-
-    map.set('prenom', {question: 'Qui êtes-vous ?', indication: 'mon nom est ...', reponse: ''});
-
-    map.set('methode', {question: 'D\'ou vient la méthode ?', indication: 'Cette technique est basé sur une méthode ... (exemple : de traders américains)', reponse: ''});
-
-    map.set('principe', {question: 'Quel est le principe ?', indication: 'elle consiste ... (exemple : à parier sur des courbes)', reponse: ''});
-
-    this.model.datas = map;
-    */
-
     this.model.texte = `Si vous faites %%activite%%, prêtez attention à ce que je vais vous dire parce que c’est probablement LA vidéo la plus importante que vous allez regarder en 2018.
 
 Si vous %%désir%% vous ne pouvez plus %%erreur%%. Ça ne marche pas. Ça ne marche plus.
@@ -47,7 +34,7 @@ Si vous %%désir%% vous ne pouvez plus %%erreur%%. Ça ne marche pas. Ça ne mar
 Mais avant cela j'ai une question pour vous ...
 
 Est-ce que vous êtes satisfait de %%situation%%?
-Vous avez dû essayer %solutionObsolete% mais sans que ça fonctionne.
+Vous avez dû essayer %%solutionObsolete%% mais sans que ça fonctionne.
 Peut-être que vous avez tout essayé et que vous avez baissé les bras.
 
 
@@ -124,6 +111,7 @@ Rappelez-vous, pour uniquement %%vraiprix%% €, vous allez avoir accès à %%of
     const map3 = new Map<String, QuestionReponse>();
     const map4 = new Map<String, QuestionReponse>();
     map1.set('activite', {question: 'Quel est votre activité ?', indication: 'indication ...', reponse: ''});
+    map1.set('situation', {question: 'Quel est votre situation ?', indication: 'indication ...', reponse: ''});
     map1.set('désir', {question: 'Quel est votre désir ?', indication: 'indication ...', reponse: ''});
     map1.set('erreur', {question: 'Une erreur ?', indication: 'indication ...', reponse: ''});
     map1.set('solutionObsolete', {question: 'Les solutions obsolete ?', indication: 'indication ...', reponse: ''});
@@ -138,6 +126,7 @@ Rappelez-vous, pour uniquement %%vraiprix%% €, vous allez avoir accès à %%of
     map2.set('essai2', {question: 'deuxieme essai ?', indication: 'indication ...', reponse: ''});
     map2.set('essaibizarre', {question: 'essai concluant ?', indication: 'indication ...', reponse: ''});
     map2.set('ennemis', {question: 'Ennemis ?', indication: 'indication ...', reponse: ''});
+    map2.set('mensonge', {question: 'Mensonge ?', indication: 'indication ...', reponse: ''});
     map2.set('ennemiscommun', {question: 'Ennemis commun ?', indication: 'indication ...', reponse: ''});
     map2.set('realise', {question: 'Ce qui a ete realise ?', indication: 'indication ...', reponse: ''});
     map2.set('resultat', {question: 'Le resultat ?', indication: 'indication ...', reponse: ''});
@@ -155,6 +144,7 @@ Rappelez-vous, pour uniquement %%vraiprix%% €, vous allez avoir accès à %%of
     map4.set('fauxprix', {question: 'Le faux prix ?', indication: 'indication ...', reponse: ''});
     map4.set('offre', {question: 'Une offre ?', indication: 'indication ...', reponse: ''});
     map4.set('vraiprix', {question: 'Quel est le vrai prix ?', indication: 'indication ...', reponse: ''});
+    map4.set('garantie', {question: 'Une garantie ?', indication: 'indication ...', reponse: ''});
     map4.set('urgence', {question: 'Raison de l\'urgence ?', indication: 'indication ...', reponse: ''});
     map4.set('objectifatteint', {question: 'L\'Objectif à atteindre ?', indication: 'indication ...', reponse: ''});
     map4.set('calltoaction', {question: 'Apres la commande vous serez ?', indication: 'indication ...', reponse: ''});
@@ -168,13 +158,12 @@ Rappelez-vous, pour uniquement %%vraiprix%% €, vous allez avoir accès à %%of
     map.set('vente', map4);
 
     this.model.datas = map;
-
-    console.log(this.model);
   }
 
   initReactiveForm() {
     this.modelForm = this.formBuilder.group({
       id: '',
+      nom: '',
       categorie: '',
       texte: '',
       datas: this.formBuilder.array([])
@@ -192,6 +181,7 @@ Rappelez-vous, pour uniquement %%vraiprix%% €, vous allez avoir accès à %%of
 
   setModelForm() {
     this.modelForm.get('id').setValue(this.model.id);
+    this.modelForm.get('nom').setValue(this.model.nom);
     this.modelForm.get('categorie').setValue(this.model.categorie);
     this.modelForm.get('texte').setValue(this.model.texte);
     this.setDatasArray()
@@ -215,7 +205,7 @@ Rappelez-vous, pour uniquement %%vraiprix%% €, vous allez avoir accès à %%of
       tab.push(this.formBuilder.group({
         key: key,
         question: val.question,
-        reponse: [val.reponse, Validators.required],
+        reponse: val.reponse,
         indication: val.indication
       }));
     });

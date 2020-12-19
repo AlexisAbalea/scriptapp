@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #3f51b5;
+}
+
+h1 {
+  color: #ff4081;
+}
+
+.mat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 3%;
+  height: 50%;
+  width: 400px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.global {
+  padding: 5%;
+  margin-bottom: 30px;
+}
+
+span {
+  font-weight: bold;
+}

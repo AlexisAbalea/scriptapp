@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ScriptAppService } from '../services/script-app.service';
 
 @Component({
   selector: 'app-login',
@@ -16,15 +17,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
-  ) {
-  }
+    private authService: AuthService,) {}
 
   async ngOnInit() {
-    if(this.authService.isAuthenticated() ) {
-      this.router.navigate(['accueil']);
-    }
-
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]

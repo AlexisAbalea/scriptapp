@@ -7,6 +7,7 @@ import { RandomAccrocheComponent } from './random-accroche/random-accroche.compo
 import { ScriptPageVenteComponent } from './script-page-vente/script-page-vente.component';
 import { RoleGuardService } from './services/role-guard-service.service';
 import { AdminComponent } from './admin/admin.component';
+import { ProfilComponent } from './profil/profil.component';
 
 const routes: Routes = [
   { path: '', component: AccueilComponent, canActivate: [AuthGuardService]},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'script', component: ScriptPageVenteComponent, canActivate: [AuthGuardService]},
   { path: 'accroche', component: RandomAccrocheComponent, canActivate: [AuthGuardService]},
   { path: 'admin', component: AdminComponent, canActivate: [RoleGuardService], data: { expectedRole: 'admin' }},
+  { path: 'profil', component: ProfilComponent, canActivate: [AuthGuardService]},
   { path: '**', component: LoginComponent}
 ];
 

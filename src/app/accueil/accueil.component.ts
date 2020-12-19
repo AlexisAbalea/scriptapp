@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScriptAppService } from '../services/script-app.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-accueil',
@@ -8,14 +8,9 @@ import { ScriptAppService } from '../services/script-app.service';
 })
 export class AccueilComponent implements OnInit {
 
-  constructor(private service: ScriptAppService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.service.connectBackend().subscribe(val => {
-      console.log(val);
-    }, error => {
-      console.log('error : ', error);
-    });
   }
 
 }

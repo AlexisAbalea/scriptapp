@@ -115,7 +115,7 @@ export class RandomAccrocheComponent implements OnInit {
       duration: 6000,
       data: message,
       panelClass: ['mat-toolbar', 'mat-warn']
-    })
+    });
   }
 
   getTexte(reponse) {

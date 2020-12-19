@@ -1,5 +1,6 @@
 export class ModelVente {
   public id;
+  public nom;
   public categorie;
   public texte;
   public datas: Map<String, Map<String, QuestionReponse>>;
